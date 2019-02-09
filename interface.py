@@ -1,5 +1,6 @@
 import actions
 import keywords as kw
+from timer import Timer, WorkTimer
 
 def handle(choice):
 
@@ -33,4 +34,7 @@ def run():
             print(error_message)
 
 if __name__ == "__main__":
-    run()
+    #run()
+    timer = WorkTimer()
+    timer.set_timeout(1)
+    timer.run()
