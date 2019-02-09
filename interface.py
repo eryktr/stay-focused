@@ -1,7 +1,6 @@
 import actions
 import keywords as kw
 
-
 def handle(choice):
 
     KEYWORD_FUNCTION = {
@@ -30,7 +29,8 @@ def run():
         try:
             handle(choice)
         except Exception as e:
-            print(str(e))
+            error_message = str(e)
+            print(error_message)
 
 if __name__ == "__main__":
     run()

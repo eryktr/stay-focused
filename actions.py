@@ -2,7 +2,6 @@ def print_welcome_message():
     print("Welcome to stay-focused!")
     print("Hope you have some great, productive time!")
 
-
 def print_help(_):
     print("work <minutes> - initializes a working session which takes exactly <minutes> minutes.")
     print("After a working session is finished, you will be notified.")
