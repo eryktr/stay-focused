@@ -14,3 +14,18 @@ def print_help(_):
 def bye(_):
     print("Goodbye!")
     exit(0)
+
+def __assert_is_integer(string):
+    try:
+        num = int(string)
+        return num
+    except Exception:
+        raise Exception("{} is not an integer".format(string))
+
+def start_working_session(params):
+    print("hi")
+    if len(params) != 2:
+        raise Exception("USAGE: work <minutes>")
+    timeout = params[1]
+    timeout = __assert_is_integer(timeout)
+    print("done")
