@@ -1,0 +1,4 @@
+WORK_KEYWORD = "work"
+BREAK_KEYWORD = "break"
+HELP_KEYWORD = "help"
+EXIT_KEYWORD = "exit"
