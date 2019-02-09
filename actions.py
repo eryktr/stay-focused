@@ -11,6 +11,6 @@ def print_help(_):
         "until you start a new working session.")
     print("type 'exit' to end the program.")
 
-def exit(_):
+def bye(_):
     print("Goodbye!")
     exit(0)

@@ -5,7 +5,8 @@ import keywords as kw
 def handle(choice):
 
     KEYWORD_FUNCTION = {
-        kw.HELP_KEYWORD : actions.print_help
+        kw.HELP_KEYWORD : actions.print_help,
+        kw.EXIT_KEYWORD : actions.bye
     }
 
     def panic():
