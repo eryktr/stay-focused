@@ -36,5 +36,5 @@ def run():
 if __name__ == "__main__":
     #run()
     timer = WorkTimer()
-    timer.set_timeout(1)
+    timer.set_timeout(2)
     timer.run()
