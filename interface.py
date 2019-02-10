@@ -1,5 +1,6 @@
 import keywords as kw
 import os
+import time
 from timer import BreakTimer, WorkTimer
 from actions import ActionPerformer
 class Interface:
@@ -34,6 +35,14 @@ class Interface:
         if clear:
             os.system("clear")
         print(line)
+
+    def show_info_alert(self, title, message):
+        command = "zenity --info --title=\"{}\" --text=\"{}\" 2> /dev/null".format(title, message)
+        os.system(command)
+
+    def show_warning_alert(self, title, message):
+        command ="zenity --warning --title=\"{}\" --text=\"{}\" 2> /dev/null".format(title, message)
+        os.system(command)
         
     def run(self):
         self.action_performer.print_welcome_message()
