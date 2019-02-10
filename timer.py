@@ -1,17 +1,19 @@
 import time
 import os
+import abc
+
 #timeout in minutes
-class Timer():
-    def __init__(self):
+class Timer(abc.ABC):
+    def __init__(self, interface):
         self.timeout = 0
-        self.tick_message = "Remaining time: "
+        self.interface = interface
     
     def set_timeout(self, timeout):
         self.timeout = timeout
 
+    @abc.abstractmethod
     def inform(self):
-        os.system("clear")
-        print(self.tick_message  + self.timeout.__str__())
+        pass
 
     def tick(self):
         self.timeout -= 1
@@ -26,22 +28,34 @@ class Timer():
             self.tick()
         self.alert()
     
+    @abc.abstractmethod
     def alert(self):
-        print("Timer is up")
+        pass
+
 
 class WorkTimer(Timer):
-    def __init__(self):
+    def __init__(self, interface):
+        super().__init__(interface)
         self.tick_message = "Remaining work time: "
 
     def alert(self):
         os.system("clear")
-        print("Work done")
+        self.interface.write_line("Work done")
 
-    
+    def inform(self):
+        os.system("clear")
+        self.interface.write_line("work tick")
 
+        
 class BreakTimer(Timer):
-    def __init__(self):
+    def __init__(self, interface):
+        super().__init__(interface)
         self.tick_message = "Remaining break time: "
 
     def alert(self):
-        print("Break over!")
+        os.system("clear")
+        self.interface.write_line("Break over!")
+
+    def inform(self):
+        os.system("clear")
+        self.interface.write_line("break tick")
