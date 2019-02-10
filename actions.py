@@ -1,3 +1,6 @@
+import time
+import threading
+import multiprocessing
 class ActionPerformer():
 
     def __init__(self, interface):
@@ -45,8 +48,18 @@ class ActionPerformer():
         interface.work_timer.run()
 
     def start_break(self, params):
+
+        def make_hell_from_life():
+            interface = self.interface
+            while interface.work_timer.timeout == 0:
+                interface.show_warning_alert("GO BACK!", "BACK TO WORK, NOW!")
+                time.sleep(10)
+            
         interface = self.interface
         self.__assert_params_are_correct(params)
         timeout = self.__get_timeout(params)
         interface.break_timer.set_timeout(timeout)
         interface.break_timer.run()
+        t = threading.Thread(target=make_hell_from_life)
+        t.start()
+        return
