@@ -36,7 +36,9 @@ class WorkTimer(Timer):
         super().__init__(interface)
 
     def alert(self):
-        self.interface.write_line("Work done")
+        self.interface.write_line("Work done", True)
+        time.sleep(1)
+        self.interface.show_info_alert("Done!", "Congratulations! Your work session has been finished.")
 
     def inform(self):
         msg = "Remaining work time: {} {}".format(self.timeout, "minutes" if self.timeout > 1 else "minute")
@@ -48,7 +50,7 @@ class BreakTimer(Timer):
         super().__init__(interface)
 
     def alert(self):
-        self.interface.write_line("Break over!")
+        self.interface.write_line("Break over!", True)
 
     def inform(self):
         msg = "Remaining break time: {} {}".format(self.timeout, "minutes" if self.timeout > 1 else "minute")
