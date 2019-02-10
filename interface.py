@@ -54,7 +54,3 @@ class Interface:
             except Exception as e:
                 error_message = str(e)
                 print(error_message)
-
-if __name__ == "__main__":
-    interface = Interface()
-    interface.run()
