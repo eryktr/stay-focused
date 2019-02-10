@@ -15,7 +15,8 @@ class Interface:
         KEYWORD_FUNCTION = {
             kw.HELP_KEYWORD : performer.print_help,
             kw.EXIT_KEYWORD : performer.bye,
-            kw.WORK_KEYWORD : performer.start_working_session
+            kw.WORK_KEYWORD : performer.start_working_session,
+            kw.BREAK_KEYWORD: performer.start_break
         }
 
         def panic():

@@ -51,6 +51,7 @@ class BreakTimer(Timer):
 
     def alert(self):
         self.interface.write_line("Break over!", True)
+        self.interface.show_warning_alert("Break over!", "Break over! Get back to work!")
 
     def inform(self):
         msg = "Remaining break time: {} {}".format(self.timeout, "minutes" if self.timeout > 1 else "minute")

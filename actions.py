@@ -28,12 +28,25 @@ class ActionPerformer():
         except Exception:
             raise Exception("{} is not an integer".format(string))
 
-    def start_working_session(self, params):
-        interface = self.interface
+    def __assert_params_are_correct(self, params):
         if len(params) != 2:
             raise Exception("USAGE: work <minutes>")
+
+    def __get_timeout(self, params):
         timeout = params[1]
         timeout = self.__assert_is_integer(timeout)
+        return timeout
+
+    def start_working_session(self, params):
+        interface = self.interface
+        self.__assert_params_are_correct(params)
+        timeout = self.__get_timeout(params)
         interface.work_timer.set_timeout(timeout)
         interface.work_timer.run()
 
+    def start_break(self, params):
+        interface = self.interface
+        self.__assert_params_are_correct(params)
+        timeout = self.__get_timeout(params)
+        interface.break_timer.set_timeout(timeout)
+        interface.break_timer.run()
