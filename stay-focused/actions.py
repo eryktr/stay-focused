@@ -61,5 +61,6 @@ class ActionPerformer():
         interface.break_timer.set_timeout(timeout)
         interface.break_timer.run()
         t = threading.Thread(target=make_hell_from_life)
+        t.daemon = True
         t.start()
         return
