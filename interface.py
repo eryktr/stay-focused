@@ -1,14 +1,20 @@
-import actions
 import keywords as kw
-from timer import Timer, WorkTimer
-
+import os
+from timer import BreakTimer, WorkTimer
+from actions import ActionPerformer
 class Interface:
-    def handle(self, choice):
 
+    def __init__(self):
+        self.work_timer = WorkTimer(self)
+        self.break_timer = BreakTimer(self)
+        self.action_performer = ActionPerformer(self)
+
+    def __handle(self, choice):
+        performer = self.action_performer
         KEYWORD_FUNCTION = {
-            kw.HELP_KEYWORD : actions.print_help,
-            kw.EXIT_KEYWORD : actions.bye,
-            kw.WORK_KEYWORD : actions.start_working_session
+            kw.HELP_KEYWORD : performer.print_help,
+            kw.EXIT_KEYWORD : performer.bye,
+            kw.WORK_KEYWORD : performer.start_working_session
         }
 
         def panic():
@@ -24,22 +30,21 @@ class Interface:
         
         execute()
 
-    def write_line(self, line):
+    def write_line(self, line, clear = False):
+        if clear:
+            os.system("clear")
         print(line)
         
     def run(self):
-        actions.print_welcome_message()
+        self.action_performer.print_welcome_message()
         while True:
             choice = input("stay-focused>>")
             try:
-                self.handle(choice)
+                self.__handle(choice)
             except Exception as e:
                 error_message = str(e)
                 print(error_message)
 
 if __name__ == "__main__":
-    #run()
     interface = Interface()
-    timer = WorkTimer(interface)
-    timer.set_timeout(2)
-    timer.run()
+    interface.run()
